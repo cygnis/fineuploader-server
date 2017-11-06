@@ -52,6 +52,13 @@ class RootFile extends File {
         return $this->originalName;
     }
 
+    public function getSize()
+    {
+        $pathStarting = explode('/temp/',$this->getPathname());
+        $url = $pathStarting[0].$this->editions['thumbnail']->url;
+        return getimagesize($url);
+    }
+
     public function setOriginalName($name)
     {
         $this->originalName = $name;

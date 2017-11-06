@@ -109,11 +109,14 @@ class Uploader {
 
     private function prepareUploadSuccessfulResponse(array $response, RootFile $file)
     {
+        list($width, $height, $type, $attr) = $file->getSize();
         return array_merge($response, [
             'type' => 'upload',
             'success' => true,
-            'file_type' => $file->getType(),
+            'file_type' => 'image',
             'original_name' => $file->getOriginalName(),
+            'width' => $width,
+            'height' => $height,
             'upload_path' => $this->clearFileExtension($file->getName())
         ]);
     }
